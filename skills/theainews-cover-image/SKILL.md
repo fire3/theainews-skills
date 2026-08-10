@@ -16,7 +16,9 @@ text is composited locally so it is always pixel-perfect.
 ## Prerequisites
 
 - Python 3 + Pillow for compositing.
-- Fonts under `assets/fonts/` (run `scripts/fetch-fonts.sh` if missing).
+- Fonts: Space Grotesk (English titles) is bundled under `assets/fonts/`; the
+  Noto CJK fallback font is downloaded on demand by `scripts/fetch-fonts.sh`
+  and is only needed for Chinese titles.
 - Background generation via the baoyu-image-gen skill, or the vendored
   `.baoyu-skills/baoyu-image-gen/scripts/main.ts` in the repo. Seedream needs
   `ARK_API_KEY` (environment or `.baoyu-skills/.env`).
@@ -67,7 +69,7 @@ python3 <skill-dir>/scripts/compose_cover.py \
 
 - Title: adapt the article title to concise English, 2 lines max, keeping the
   most searchable tokens (model/tool names). Use Chinese only if the user
-  insists (CJK fallback font exists).
+  insists; first run `scripts/fetch-fonts.sh` to get the CJK fallback font.
 - Defaults live in `scripts/cover.config.json`: 2560x1440, bottom-left anchor,
   adaptive scrim, brand `THE AI NEWS`.
 - Adjust layout with `--anchor`, `--scrim`, `--brand`/`--no-brand`, `--font`,

@@ -11,7 +11,7 @@ skills/
     ├── SKILL.md
     ├── agents/openai.yaml
     ├── scripts/               # compose_cover.py、fetch-fonts.sh 等
-    ├── assets/fonts/          # Space Grotesk、Noto CJK（OFL）
+    ├── assets/fonts/          # Space Grotesk（OFL）；Noto CJK 按需下载
     └── references/            # 背景提示词规范、站点约定
 ```
 
@@ -53,7 +53,8 @@ npx -y github:fire3/theainews-skills install theainews-cover-image --dest ~/.cod
 
 - Python 3 + Pillow（本地文字合成）
 - 背景生成使用 baoyu-image-gen / Seedream，需要 `ARK_API_KEY`
-- 字体已随 skill 携带；缺失时运行 skill 内 `scripts/fetch-fonts.sh`
+- Space Grotesk 已随 skill 携带；中文兜底字体（Noto CJK，约 17MB）不随仓库
+  分发，标题含中文时先运行 skill 内 `scripts/fetch-fonts.sh` 下载
 
 ## 新增 skill
 

@@ -345,6 +345,15 @@ def main(argv: list[str] | None = None) -> int:
         print("Run the skill's scripts/fetch-fonts.sh to vendor the fonts.", file=sys.stderr)
         return 2
 
+    cjk_font_path = str(skill_root / "assets" / "fonts" / "NotoSansCJKsc-Bold.otf")
+    if contains_cjk(args.title) and not os.path.exists(cjk_font_path):
+        print(
+            "ERROR: title contains CJK characters but NotoSansCJKsc-Bold.otf is not bundled.\n"
+            "Run the skill's scripts/fetch-fonts.sh to download the CJK fallback font.",
+            file=sys.stderr,
+        )
+        return 2
+
     bg = Image.open(args.background).convert("RGB")
     target = parse_size(size)
     canvas = cover_fit(bg, target)
@@ -360,7 +369,7 @@ def main(argv: list[str] | None = None) -> int:
         category=category,
         date=args.date,
         font_path=font_path,
-        cjk_font_path=str(skill_root / "assets" / "fonts" / "NotoSansCJKsc-Bold.otf"),
+        cjk_font_path=cjk_font_path,
         anchor=anchor,
         accent=hex_to_rgb(accent),
         brand=brand,
