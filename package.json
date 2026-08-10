@@ -1,0 +1,29 @@
+{
+  "name": "theainews-skills",
+  "version": "0.1.0",
+  "description": "The AI News skill collection for Codex: article cover images and future theainews-related skills. Installable via npx.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "theainews-skills": "bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node bin/cli.mjs list"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "codex",
+    "skills",
+    "theainews",
+    "cover-image",
+    "cli"
+  ]
+}
