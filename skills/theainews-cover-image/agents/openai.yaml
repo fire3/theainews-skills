@@ -1,4 +1,4 @@
 interface:
   display_name: "The AI News Cover Image"
-  short_description: "为 The AI News 生成两段式封面：AI 出纯背景，本地脚本合成英文标题"
-  default_prompt: "Use $theainews-cover-image to create a cover for this article: AI-generated background plus a locally composited English title."
+  short_description: "为 The AI News 直接生成整张封面：AI 一次出图（背景+标题文字），风格按栏目与历史轮换，不固定"
+  default_prompt: "Use $theainews-cover-image to create a cover for this article: one-pass AI generation with a style chosen from the style system (category mapping + anti-repetition rotation)."

@@ -1,7 +1,7 @@
 {
   "name": "theainews-skills",
-  "version": "0.1.0",
-  "description": "The AI News skill collection for Codex: article cover images and future theainews-related skills. Installable via npx.",
+  "version": "0.2.0",
+  "description": "The AI News skill collection for Codex: one-pass AI article covers with rotating styles (no local compositing), plus future theainews-related skills. Installable via npx.",
   "type": "module",
   "license": "MIT",
   "bin": {

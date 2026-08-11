@@ -26,12 +26,17 @@
 
 ## Brand
 
-- Brand mark: `THE AI NEWS`, top-left, Space Grotesk Bold, subtle white.
-- Accent: cyan `#06B6D4`, violet `#8B5CF6`.
-- Preferred backgrounds: dark navy (`#0A0A0A` / `#1A1A2E`) with glowing accents.
+- Brand mark: `THE AI NEWS`, optional, top-left, rendered by the model in a
+  type style consistent with the selected cover style; dark styles use
+  light/white text, light styles use dark text.
+- Site accents (cyan `#06B6D4` / violet `#8B5CF6`) are only the default;
+  the actual palette is decided by `references/style-system.md` and must vary
+  across covers. Never default to the dark-navy + cyan/violet look.
 
 ## Generation backend
 
 - baoyu-image-gen with Seedream: model `doubao-seedream-5-0-lite-260128`,
   size 2560x1440, quality 2k. Requires `ARK_API_KEY` (Volcengine Ark).
 - Vendored skill scripts live at `.baoyu-skills/baoyu-image-gen/scripts/main.ts`.
+- One-pass generation: the model renders background AND all title text in a
+  single call. No local compositing, no fonts, no Pillow.

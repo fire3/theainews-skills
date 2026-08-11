@@ -7,12 +7,10 @@ The AI News（https://theainews.cc）的 Codex skill 集合。目前包含封面
 
 ```text
 skills/
-└── theainews-cover-image/     # 封面：AI 纯背景 + 本地英文标题合成
+└── theainews-cover-image/     # 封面：AI 一次出图（背景 + 标题文字），风格轮换
     ├── SKILL.md
     ├── agents/openai.yaml
-    ├── scripts/               # compose_cover.py、fetch-fonts.sh 等
-    ├── assets/fonts/          # Space Grotesk（OFL）；Noto CJK 按需下载
-    └── references/            # 背景提示词规范、站点约定
+    └── references/            # 风格系统、提示词模板、站点约定
 ```
 
 ## 安装（npx）
@@ -51,10 +49,12 @@ npx -y github:fire3/theainews-skills install theainews-cover-image --dest ~/.cod
 
 ## theainews-cover-image 前置依赖
 
-- Python 3 + Pillow（本地文字合成）
-- 背景生成使用 baoyu-image-gen / Seedream，需要 `ARK_API_KEY`
-- Space Grotesk 已随 skill 携带；中文兜底字体（Noto CJK，约 17MB）不随仓库
-  分发，标题含中文时先运行 skill 内 `scripts/fetch-fonts.sh` 下载
+- baoyu-image-gen（已安装的 skill 或站点仓库内置脚本）
+- Seedream 需要 `ARK_API_KEY`
+- 无本地合成：不再需要 Python、Pillow 或字体文件；整张封面（含标题文字）
+  由图片模型一次生成，风格按 `references/style-system.md` 轮换，避免单一
+
+> v0.2.0 起移除了「AI 纯背景 + 本地合成标题」的两段式方案及其脚本/字体资源。
 
 ## 新增 skill
 
