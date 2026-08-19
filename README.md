@@ -49,12 +49,6 @@ npx -y github:fire3/theainews-skills install theainews-cover-image --dest ~/.cod
 
 ## theainews-cover-image 前置依赖
 
-- baoyu-image-gen（已安装的 skill 或站点仓库内置脚本）
-- Seedream 需要 `ARK_API_KEY`
-- 无本地合成：不再需要 Python、Pillow 或字体文件；整张封面（含标题文字）
-  由图片模型一次生成，风格按 `references/style-system.md` 轮换，避免单一
-
-> v0.2.0 起移除了「AI 纯背景 + 本地合成标题」的两段式方案及其脚本/字体资源。
 
 ## 新增 skill
 

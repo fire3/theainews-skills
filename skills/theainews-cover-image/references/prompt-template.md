@@ -1,7 +1,7 @@
 # One-Pass Cover Prompt Template
 
 完整提示词按以下结构组织，存为 `prompts/01-cover-<slug>.md` 后交给
-baoyu-image-gen。每张封面都必须自包含：风格、逐字文本、版式、约束全部写全，
+chromebot。每张封面都必须自包含：风格、逐字文本、版式、约束全部写全，
 不依赖任何外部文件。
 
 ## 结构
