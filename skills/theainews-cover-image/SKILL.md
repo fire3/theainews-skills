@@ -20,6 +20,15 @@ description: 为 The AI News 文章直接生成整张封面图：用chromebot出
 - 打开 CDP 模式的 chrome 浏览器（默认 CDP 端口 localhost:9222）
 - OCR：RapidOCR（`rapidocr-onnxruntime`），配合 `opencv-python-headless`（`cv2`）做图片读取与文字识别。
 
+### CDP 探测（严格规定）
+
+- 开始生成前，先探测 `localhost:9222`（如 `curl http://localhost:9222/json/version`）
+  确认 CDP 服务可用。
+- **若探测失败：必须停下，明确提醒用户先启动 CDP 模式的 chrome 浏览器**（例如
+  `chrome --remote-debugging-port=9222`），等待用户确认后再继续。
+- **严禁**使用 Playwright、chromedriver 或任何脚本自行拉起/托管 CDP 服务；
+  chromebot 只能连接用户已启动的浏览器，不得代为启动。
+
 ## 工作流
 
 ### 1. 读取文章
