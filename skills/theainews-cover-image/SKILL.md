@@ -1,6 +1,6 @@
 ---
 name: theainews-cover-image
-description: 为 The AI News 文章直接生成整张封面图：用chromebot出图，背景与标题文字全部由模型渲染。风格按文章栏目与最近历史轮换，避免封面千篇一律。Use when the user asks to create/generate/make a cover image for a The AI News article, regenerate or batch article covers, or design cover backgrounds.
+description: 为 The AI News 文章直接生成整张封面图：用chromebot出图，背景与标题文字全部由模型渲染。风格与版式各自按文章栏目、最近历史轮换，避免封面千篇一律。Use when the user asks to create/generate/make a cover image for a The AI News article, regenerate or batch article covers, or design cover backgrounds.
 ---
 
 # The AI News Cover Image
@@ -29,16 +29,20 @@ description: 为 The AI News 文章直接生成整张封面图：用chromebot出
 - 摘出 2–3 个关键事实（数字、模型名、亮点）用于副标题/统计卡片。
 - 默认输出 `public/covers/<slug>.jpg/png/webp`。
 
-### 2. 选择风格（关键：不要固定）
+### 2. 选择风格与版式（关键：两者都不要固定）
 
 - **严禁**连续两张封面使用同一风格，也严禁无脑回落到深海军蓝。
+- 风格确定后，再按 `references/style-system.md`「版式池」选择一套构图骨架。
+- **严禁连续两张封面使用同一版式**；不要默认回落到「底部三张统计卡片」。
+- 最近 3 张封面中，风格与版式都要各自错开（连同强调色一起轮换）。
 
 ### 3. 设计图内文字
 
 - 封面标题：简洁中文（建议 ≤14 字），用户要求英文时用英文；保留可搜索的
   模型/工具名。
 - 副标题：一行，2–3 个关键事实（数字、配置、定位）。
-- 可选 2–3 个统计卡片，数字单独高亮。
+- 数据/要点按所选版式组织（2–3 个短句），只有选 `L-bottom-cards` 才做成
+  底部等距卡片；其余版式把数据融入大数字、分栏或要点竖排。
 - 可选品牌字标 `THE AI NEWS` 左上角（英文短串，模型渲染稳定）。
 - 图内文字总量要小；所有字符串在生成前必须定稿。
 - 对易错的品牌/模型名在提示词中逐字母拼写（如 F-I-R-E-C-R-A-W-L），但提示词
@@ -48,8 +52,8 @@ description: 为 The AI News 文章直接生成整张封面图：用chromebot出
 
 - 调用后端前，先把完整、自包含的提示词存到 `prompts/01-cover-<slug>.md`
   （可复现记录）。
-- 提示词必须包含：所选风格的完整规范（背景/排版/配色/视觉元素）、逐字文本、
-  版式与安全边距、以及「图形上禁止出现任何文字」的约束。
+- 提示词必须包含：所选风格的完整规范（背景/排版/配色/视觉元素）、**所选版式**、
+  逐字文本、安全边距、以及「图形上禁止出现任何文字」的约束。
 - 结构参考 `references/prompt-template.md`。
 
 ### 5. 生成整张封面（chromebot，默认 doubao）
