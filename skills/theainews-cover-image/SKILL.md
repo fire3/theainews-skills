@@ -9,9 +9,9 @@ description: 为 The AI News 文章直接生成整张封面图：用chromebot出
 背景、标题、副标题与可选统计卡片全部由模型直接生成。
 
 1. 读取文章。
-2. 写出完整生成提示词（风格规范 + 逐字文本 + 版式 + 约束）。
-3. 用 RapidOCR 校验文字；出错就改提示词重新生成。
-4. 用 chromebot（默认 doubao）出图。
+2. 写出完整生成提示词（风格规范 + 逐字文本 + 版式 + 约束）, 提示词避免出现跟生成图片无关的内容。
+3. 用 chromebot（默认 doubao）出图。
+4. 用 RapidOCR 校验文字；出错就改提示词重新生成。
 5. 输出到 `public/covers/<slug>.jpg` 并接入文章 frontmatter。
 
 ## 前置依赖
@@ -61,16 +61,15 @@ description: 为 The AI News 文章直接生成整张封面图：用chromebot出
 
 ### 4. 写生成提示词
 
-- 调用后端前，先把完整、自包含的提示词存到 `prompts/01-cover-<slug>.md`
-  （可复现记录）。
+- 调用后端前，先把完整、自包含的提示词存到 `prompts/cover-<slug>.md`。
 - 提示词必须包含：所选风格的完整规范（背景/排版/配色/视觉元素）、**所选版式**、
-  逐字文本、安全边距、以及「图形上禁止出现任何文字」的约束。
+  逐字文本、安全边距、以及相关的约束。
 - 结构参考 `references/prompt-template.md`。
 
 ### 5. 生成整张封面（chromebot，默认 doubao）
 
 - 用 `chromebot image --engine doubao --prompt "..." --out public/covers --name <slug>` 生成；失败重试一次。
-- 若 OCR/目视发现文字错误：写新的提示词文件（如 `01-cover-<slug>-v2.md`）、
+- 若 OCR/目视发现文字错误：写新的提示词文件（如 `cover-<slug>-v2.md`）、
   输出到新路径重新生成；**禁止**在位图上叠字或覆盖修正。
 
 ### 6. 校验
@@ -78,6 +77,7 @@ description: 为 The AI News 文章直接生成整张封面图：用chromebot出
 - 用 RapidOCR（`rapidocr-onnxruntime` + `opencv-python-headless`/`cv2`）编写脚本
   逐条核对图内文字：每个引号内的字符串必须逐字正确，
   图形（图标、装饰、卡片）上不能有多余文字。
+- RapidOCR 识别部分大字会有问题，大字一般不会出错。
 
 ### 7. 接入站点
 
